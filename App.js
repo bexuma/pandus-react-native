@@ -2,13 +2,7 @@ import React from 'react';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
-  );
-}
+import ApplicationCreate from './components/application-create'
 
 // const client = new ApolloClient();
 const client = new ApolloClient({
@@ -17,6 +11,7 @@ const client = new ApolloClient({
 
 const App = () => (
     <ApolloProvider client={client}>
+      <ApplicationCreate />
     </ApolloProvider>
   );
 
