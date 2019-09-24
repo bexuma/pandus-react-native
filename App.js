@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import ApolloClient from 'apollo-boost';
+import { ApolloProvider } from '@apollo/react-hooks';
 
 export default function App() {
   return (
@@ -9,11 +10,14 @@ export default function App() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+// const client = new ApolloClient();
+const client = new ApolloClient({
+  uri: 'https://pandus.herokuapp.com/graphql',
 });
+
+const App = () => (
+    <ApolloProvider client={client}>
+    </ApolloProvider>
+  );
+
+export default App
