@@ -47,6 +47,8 @@ const ApplicationList = ({ navigation }) => {
         data={allApplications}
         renderItem={renderItem}
         keyExtractor={(item, index) => index.toString()}
+        onRefresh={refetch}
+        refreshing={loading}
       />
       <FAB
         buttonColor="red"
