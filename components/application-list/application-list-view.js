@@ -3,9 +3,10 @@ import { Text, SafeAreaView, FlatList, View, ActivityIndicator } from 'react-nat
 import { useQuery } from '@apollo/react-hooks';
 import FAB from 'react-native-fab'
 import { AntDesign } from '@expo/vector-icons';
+import { withNavigation } from 'react-navigation';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import queries from './application-list-queries'
-import { withNavigation } from 'react-navigation';
 
 const ApplicationList = ({ navigation }) => {
   const { loading, error, data, refetch } = useQuery(queries.APPICAIONS_QUERY);
@@ -30,11 +31,14 @@ const ApplicationList = ({ navigation }) => {
   if (!allApplications) return <Text>Query does not work</Text>;
 
   const renderItem = ({ item }) => (
-    <View style={{ padding: 10, borderBottomWidth: 1, borderBottomColor: "gray" }}>
+    <TouchableOpacity 
+      style={{ padding: 10, borderBottomWidth: 1, borderBottomColor: "gray" }} 
+      onPress={() => navigation.navigate("details", { application: item })}
+    >
       <Text style={{ fontWeight: "bold" }}>{item.title}</Text>
       <Text>{item.description}</Text>
       <Text>{item.address}</Text>
-    </View>
+    </TouchableOpacity>
   );
 
   return (
