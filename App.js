@@ -1,9 +1,14 @@
 import React from 'react';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
+import { createAppContainer } from "react-navigation";
 
-import ApplicationCreate from './components/application-create'
-import ApplicationList from './components/application-list'
+import NavigationService from "./services/navigation";
+import Navigation from "./navigation/navigation";
+
+console.disableYellowBox = true;
+
+const AppContainer = createAppContainer(Navigation);
 
 // const client = new ApolloClient();
 const client = new ApolloClient({
@@ -12,7 +17,12 @@ const client = new ApolloClient({
 
 const App = () => (
     <ApolloProvider client={client}>
-      <ApplicationList />
+      {/* <ApplicationList /> */}
+      <AppContainer
+        ref={navigatorRef => {
+          NavigationService.setTopLevelNavigator(navigatorRef);
+        }}
+      />
     </ApolloProvider>
   );
 
