@@ -2,10 +2,11 @@ import React, {useState} from 'react';
 import { TextInput, ActivityIndicator,  SafeAreaView, View, Text, TouchableOpacity } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import { withNavigation } from 'react-navigation';
+import { MaterialIcons } from '@expo/vector-icons';
 
 const ApplicationDetails = ({ navigation }) => {
   const application = navigation.getParam("application", {});
-  console.log(application);
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <MapView
@@ -34,5 +35,14 @@ const ApplicationDetails = ({ navigation }) => {
     </SafeAreaView>
   );
 }
+
+ApplicationDetails.navigationOptions = ({ navigation }) => ({
+  title: 'Детали',
+  headerLeft: (
+    <TouchableOpacity onPress={() => navigation.navigate("list")} style={{paddingLeft: 8}}>
+      <MaterialIcons name="keyboard-backspace" size="28" />
+    </TouchableOpacity>
+    ),
+})
 
 export default withNavigation(ApplicationDetails);

@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import { TextInput, ActivityIndicator,  SafeAreaView, View, Text, TouchableOpacity } from 'react-native';
 import { useMutation } from '@apollo/react-hooks';
+import { MaterialIcons } from '@expo/vector-icons';
+import { withNavigation } from 'react-navigation';
 
 import styles from './application-create-styles'
 import mutations from './application-create-mutations'
-import { MaterialIcons } from '@expo/vector-icons';
-import { withNavigation } from 'react-navigation';
 
 const ApplicationCreate = ({ navigation }) => {
   const [title, setTitle] = useState("")
