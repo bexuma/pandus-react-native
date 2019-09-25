@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, SafeAreaView, FlatList, View } from 'react-native'
+import { Text, SafeAreaView, FlatList, View, ActivityIndicator } from 'react-native'
 import { useQuery } from '@apollo/react-hooks';
 import FAB from 'react-native-fab'
 import { AntDesign } from '@expo/vector-icons';
@@ -9,20 +9,26 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import queries from './application-list-queries'
 
 const ApplicationList = ({ navigation }) => {
-  const { loading, error, data } = useQuery(queries.APPICAIONS_QUERY);
+  const { loading, error, data, refetch } = useQuery(queries.APPICAIONS_QUERY);
+
+  const {params} = navigation.state
+
+  if (params && params.applicationCreated) refetch()
 
   if (loading) return (
-    <SafeAreaView>
-      <Text>Loading...</Text>
-    </SafeAreaView>
+    <View style={{
+      alignItems: 'center',
+      justifyContent: 'center',
+      flex: 1
+    }}>
+      <ActivityIndicator size="large" color="#DC143C" />
+    </View>
   );
   if (error) return <Text>Error! ${error.message}</Text>
 
   const {allApplications} = data
 
   if (!allApplications) return <Text>Query does not work</Text>;
-
-  console.log("allApplications", allApplications) 
 
   const renderItem = ({ item }) => (
     <TouchableOpacity 
@@ -37,9 +43,6 @@ const ApplicationList = ({ navigation }) => {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <View style={{ borderBottomWidth: 1 }}>
-        <Text style={{ fontWeight: "bold", fontSize: 16, padding: 10 }}>Все Заявления</Text>
-      </View>
       <FlatList 
         data={allApplications}
         renderItem={renderItem}
@@ -55,5 +58,10 @@ const ApplicationList = ({ navigation }) => {
     </SafeAreaView>
   )
 }
+
+ApplicationList.navigationOptions = {
+  title: 'Заявления',
+};
+
 
 export default withNavigation(ApplicationList);
