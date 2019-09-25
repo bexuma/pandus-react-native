@@ -4,7 +4,7 @@ import { useMutation } from '@apollo/react-hooks';
 
 import styles from './application-create-styles'
 import mutations from './application-create-mutations'
-import { Ionicons } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 import { withNavigation } from 'react-navigation';
 
 const ApplicationCreate = ({ navigation }) => {
@@ -21,7 +21,7 @@ const ApplicationCreate = ({ navigation }) => {
           setTitle("")
           setDescription("")
           setAddress("")
-          alert("Заявление отправлено")
+          navigation.navigate("list", {applicationCreated: true})
         } else {
           console.log("error", "Could not create application");
         }
@@ -38,18 +38,14 @@ const ApplicationCreate = ({ navigation }) => {
         justifyContent: 'center',
         flex: 1
       }}>
-<ActivityIndicator size="large" color="#DC143C" />
+        <ActivityIndicator size="large" color="#DC143C" />
       </View>
-
     ) 
 
   return (
       <SafeAreaView style={styles.container}>
-        <TouchableOpacity onPress={() => navigation.navigate("list")}>
-          <Ionicons name="ios-arrow-back" size="32" />
-        </TouchableOpacity>
         <View style={styles.formContainer}>
-          <Text style={styles.header}>Заявление</Text>
+          <Text style={styles.header}>Создать</Text>
           <TextInput
           style={styles.textInput}
             onChangeText={text => setTitle(text)}
@@ -81,5 +77,14 @@ const ApplicationCreate = ({ navigation }) => {
       </SafeAreaView>
   );
 }
+
+ApplicationCreate.navigationOptions = ({navigation}) => ({
+  title: 'Новое заявление',
+  headerLeft: (
+  <TouchableOpacity onPress={() => navigation.navigate("list")} style={{paddingLeft: 8}}>
+    <MaterialIcons name="keyboard-backspace" size="28" />
+  </TouchableOpacity>
+  ),
+})
 
 export default withNavigation(ApplicationCreate);

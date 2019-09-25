@@ -1,19 +1,20 @@
-import { createSwitchNavigator } from "react-navigation";
+import { createStackNavigator } from 'react-navigation-stack';
 
 import ApplicationCreate from "../components/application-create";
 import ApplicationList from "../components/application-list";
 
-const Navigation = createSwitchNavigator(
+const Navigation = createStackNavigator(
   {
     create: { screen: ApplicationCreate },
-    list: { screen: ApplicationList }
+    list: { screen: ApplicationList, navigationOptions: {
+      headerBackTitle: null
+    } }
   },
   {
     initialRouteName: "list",
     mode: "card",
     resetOnBlur: true,
     navigationOptions: {
-      header: null,
       gesturesEnabled: false
     }
   }
