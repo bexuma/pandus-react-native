@@ -40,7 +40,7 @@ ApplicationDetails.navigationOptions = ({ navigation }) => ({
   title: 'Детали',
   headerLeft: (
     <TouchableOpacity onPress={() => navigation.navigate("list")} style={{paddingLeft: 8}}>
-      <MaterialIcons name="keyboard-backspace" size="28" />
+      <MaterialIcons name="keyboard-backspace" size={28} />
     </TouchableOpacity>
     ),
 })
