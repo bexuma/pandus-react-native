@@ -26,9 +26,10 @@ const ApplicationDetails = ({ navigation }) => {
           description={application.description}
         />
       </MapView>
-      <View style={{ flex: 1 }}>
-      <Text>{application.title}</Text>
-      <Text>{application.description}</Text>
+      <View style={{ flex: 1, padding: 10, borderTopWidth: 1, borderTopColor: "gray" }}>
+        <Text style={{ fontWeight: "bold" }}>{application.title}</Text>
+        <Text>Описание: {application.description}</Text>
+        <Text>Адрес: {application.address}</Text>
       </View>
     </SafeAreaView>
   );
