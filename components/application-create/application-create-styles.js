@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     paddingTop: 20,
     backgroundColor: '#fff',
-    justifyContent: 'center'
+    // justifyContent: 'center'
   },
   header: {
     textAlign:'center',
@@ -35,6 +35,9 @@ backgroundColor: "#8D0D26"
     fontWeight: '700',
     fontSize: 16,
     color: 'white'
+  },
+  formContainer: {
+    paddingTop: 70
   }
 });
 
