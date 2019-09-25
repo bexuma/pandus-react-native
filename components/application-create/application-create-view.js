@@ -4,8 +4,10 @@ import { useMutation } from '@apollo/react-hooks';
 
 import styles from './application-create-styles'
 import mutations from './application-create-mutations'
+import { Ionicons } from '@expo/vector-icons';
+import { withNavigation } from 'react-navigation';
 
-const ApplicationCreate = () => {
+const ApplicationCreate = ({ navigation }) => {
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
   const [address, setAddress] = useState("")
@@ -43,38 +45,41 @@ const ApplicationCreate = () => {
 
   return (
       <SafeAreaView style={styles.container}>
-      <View style={styles.formContainer}>
-      <Text style={styles.header}>Заявление</Text>
-        <TextInput
-        style={styles.textInput}
-          onChangeText={text => setTitle(text)}
-          value={title}
-          placeholder="Заголовок..."
-        />
-        <TextInput
-        style={styles.textInput}
-          onChangeText={text => setDescription(text)}
-          value={description}
-          placeholder="Описание..."
-        />
-        <TextInput
-        style={styles.textInput}
-          onChangeText={text => setAddress(text)}
-          value={address}
-          placeholder="Адрес..."
-        />
-        <TouchableOpacity
-          style={[styles.button, disabled() ? styles.buttonDisabled : styles.buttonEnabled]}
-          onPress={createApplication}
-          disabled={
-            disabled()
-          }
-        >
-        <Text  style={styles.buttonText}>Отправить</Text>
+        <TouchableOpacity onPress={() => navigation.navigate("list")}>
+          <Ionicons name="ios-arrow-back" size="32" />
         </TouchableOpacity>
+        <View style={styles.formContainer}>
+          <Text style={styles.header}>Заявление</Text>
+          <TextInput
+          style={styles.textInput}
+            onChangeText={text => setTitle(text)}
+            value={title}
+            placeholder="Заголовок..."
+          />
+          <TextInput
+          style={styles.textInput}
+            onChangeText={text => setDescription(text)}
+            value={description}
+            placeholder="Описание..."
+          />
+          <TextInput
+          style={styles.textInput}
+            onChangeText={text => setAddress(text)}
+            value={address}
+            placeholder="Адрес..."
+          />
+          <TouchableOpacity
+            style={[styles.button, disabled() ? styles.buttonDisabled : styles.buttonEnabled]}
+            onPress={createApplication}
+            disabled={
+              disabled()
+            }
+          >
+          <Text  style={styles.buttonText}>Отправить</Text>
+          </TouchableOpacity>
         </View>
       </SafeAreaView>
   );
 }
 
-export default ApplicationCreate;
+export default withNavigation(ApplicationCreate);

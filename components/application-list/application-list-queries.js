@@ -5,6 +5,9 @@ const APPICAIONS_QUERY = gql`
     allApplications {
       title
       description
+      address
+      latitude
+      longitude
     }
   }
 `;
