@@ -3,6 +3,7 @@ import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
 
 import ApplicationCreate from './components/application-create'
+import ApplicationList from './components/application-list'
 
 // const client = new ApolloClient();
 const client = new ApolloClient({
@@ -11,7 +12,7 @@ const client = new ApolloClient({
 
 const App = () => (
     <ApolloProvider client={client}>
-      <ApplicationCreate />
+      <ApplicationList />
     </ApolloProvider>
   );
 
